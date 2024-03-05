@@ -16,5 +16,19 @@ API Backend for [City Explorer](https://github.com/tehbillis/city-explorer)
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
+03-04-2024 10:03pm - Setup server repository
+
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+## Time Estimates
+
+Name of feature: Setup
+
+Estimate of time needed to complete: 1h
+
+Start time: 9:35p
+
+Finish time: 10:03p
+
+Actual time needed to complete: 28 min
