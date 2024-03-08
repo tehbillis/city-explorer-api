@@ -39,10 +39,10 @@ Actual time needed to complete: 28 min
 
 ***
 
-Estimate of time needed to complete: 1h
+Estimate of time needed to complete: 2h
 
-Start time: 9:35p
+Start time: 8:00p
 
-Finish time: 10:03p
+Finish time: 10:34p
 
-Actual time needed to complete: 28 min
+Actual time needed to complete: 2h 34m
