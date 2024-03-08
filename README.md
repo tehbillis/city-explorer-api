@@ -23,7 +23,21 @@ API Backend for [City Explorer](https://github.com/tehbillis/city-explorer)
 
 ## Time Estimates
 
-Name of feature: Setup
+### Setup
+
+***
+
+Estimate of time needed to complete: 1h
+
+Start time: 9:35p
+
+Finish time: 10:03p
+
+Actual time needed to complete: 28 min
+
+### Weather Placeholder
+
+***
 
 Estimate of time needed to complete: 1h
 
