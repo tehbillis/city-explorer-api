@@ -49,6 +49,18 @@ Estimate of time needed to complete: 2h
 
 Start time: 8:00p
 
-Finish time: 10:34p
+Finish time: 11:34p
 
-Actual time needed to complete: 2h 34m
+Actual time needed to complete: 3h 34m
+
+### Errors
+
+***
+
+Estimate of time needed to complete: 2h
+
+Start time: 11:45a
+
+Finish time: 
+
+Actual time needed to complete: 
