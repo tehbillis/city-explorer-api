@@ -21,6 +21,12 @@ API Backend for [City Explorer](https://github.com/tehbillis/city-explorer)
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
+## Technical Documents
+
+### Web Request Cycle
+
+![Web Request Cycle](./src/assets/City%20Explorer%20web%20request.drawio.png)
+
 ## Time Estimates
 
 ### Setup
