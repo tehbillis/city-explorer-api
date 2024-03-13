@@ -22,7 +22,7 @@ app.get('/weather', async (request, response) => {
   let cityForecast = [];
 
   try {
-    const weatherData = await axios.get(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${WEATHER_API_KEY}&units=I`);
+    const weatherData = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${WEATHER_API_KEY}&units=I&days=3`);
 
     // Access the data array and its first element, extracting properties using optional chaining
     weatherData?.data?.data?.forEach(day => {
