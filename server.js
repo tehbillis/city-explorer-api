@@ -1,11 +1,12 @@
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
-const weatherData = require('./data/weather.json');
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 
 const cors = require('cors'); //Cross Origin Resource Sharing
 const express = require('express');
 const app = express();
+const axios = require('axios');
 
 // Define routes and middleware here
 
@@ -16,18 +17,35 @@ app.get('/', (request, response) => {
   response.send('You made it! Welcome!');
 });
 
-app.get('/weather', (request, response) => {
-  const { lat, lon, searchQuery } = request.query;
+app.get('/weather', async (request, response) => {
+  const { lat, lon } = request.query;
+  let cityForecast = [];
 
-  console.log(Math.floor(lat * 10) / 10);
-
-  let cityWeather = new Weather(searchQuery, lat, lon);
-  console.log(cityWeather);
   try {
-    let cityForecast = cityWeather.getCityWeather().reduce((accumulator, item) => {
-      accumulator.push(new Forecast(item.datetime, item.weather.description));
-      return accumulator;
-    }, []);
+    const weatherData = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${WEATHER_API_KEY}&units=I&days=3`);
+    let dayOfTheWeek = '';
+
+    // Access the data array and its first element, extracting properties using optional chaining
+    weatherData?.data?.data?.forEach(day => {
+      // Create a new Forecast object using destructuring
+      const { datetime, weather, app_temp } = day;
+      const { description, icon } = weather;
+
+      // Find day of the week
+      const date = new Date(datetime);
+      const dateDay = date.getDay();
+      const dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+      if (getTodaysDate() === datetime) { // TODO: Create function to find out if today is today
+        dayOfTheWeek = 'Today';
+      } else {
+        dayOfTheWeek = dayNames[dateDay];
+      }
+
+      cityForecast.push(new Forecast(datetime, dayOfTheWeek, description, app_temp, icon));
+    });
+
+    console.log(cityForecast);
 
     response.send(cityForecast);
   } catch (error) {
@@ -38,33 +56,28 @@ app.get('/weather', (request, response) => {
 });
 
 class Forecast {
-  constructor(date, description) {
+  constructor(date, day, description, temp, icon) {
     this.date = date;
+    this.day = day;
     this.description = description;
+    this.temp = temp;
+    this.icon = icon;
   }
 }
 
-class Weather {
-  constructor(city, lat, lon) {
-    this.weatherData = weatherData.find(data => (
-      data.city_name.toLocaleLowerCase() === city.toLocaleLowerCase() &&
-      truncLocation(data.lat) === truncLocation(lat) &&
-      truncLocation(data.lon) === truncLocation(lon)
-    ));
-  }
+function getTodaysDate () {
+  const currentDate = new Date();
 
-  getCityName() {
-    return this.weatherData ? this.weatherData.city_name : 'City not found';
-  }
+    // Get the year, month, and day
+    const year = currentDate.getFullYear();
+    // JavaScript months are zero-based, so add 1 to get the correct month
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Adding padding if month is a single digit
+    const day = String(currentDate.getDate()).padStart(2, '0'); // Adding padding if day is a single digit
 
-  getCityWeather() {
-    return this.weatherData ? this.weatherData.data : 'City Not Found';
-  }
-}
+    // Form the date string in "YYYY-MM-DD" format
+    const formattedDate = `${year}-${month}-${day}`;
 
-// If the location name matches the lat and lon to the 10th decimal place, we will accept it as being the right location for now.
-function truncLocation (location) {
-  return Math.floor(location * 10) / 10;
+    return formattedDate;
 }
 
 app.get('*', (request, response) => {

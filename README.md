@@ -61,6 +61,18 @@ Estimate of time needed to complete: 2h
 
 Start time: 11:45a
 
-Finish time: 
+Finish time: 2:00p
 
-Actual time needed to complete: 
+Actual time needed to complete: 2h 15m
+
+### Live Weather
+
+***
+
+Estimate of time needed to complete: 1h
+
+Start time: 9:07p
+
+Finish time: 10:15p
+
+Actual time needed to complete: 1h 8m
