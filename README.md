@@ -76,3 +76,15 @@ Start time: 9:07p
 Finish time: 10:15p
 
 Actual time needed to complete: 1h 8m
+
+### Movies
+
+***
+
+Estimate of time needed to complete: 2h
+
+Start time: 12:22p
+
+Finish time: 4:12p
+
+Actual time needed to complete: 3h 50m
